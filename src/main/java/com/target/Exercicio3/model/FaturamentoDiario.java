@@ -10,24 +10,23 @@ public  class FaturamentoDiario {
     public void relatorio(List<FaturamentoDiario> faturamentoDiario) {
 
         double faturamentoMensal = 0, menorFaturamento = 0, max = 0;
-        int dias=0;
+        int dias=0,cont=0;
 
         for (FaturamentoDiario dia : faturamentoDiario) {
             if (dia.getValor() > 0) {
                 faturamentoMensal = dia.getValor() + faturamentoMensal;
+                cont++;
+
                 if ((menorFaturamento > dia.getValor() || menorFaturamento == 0)) {
                     menorFaturamento = dia.getValor();
-
                 }
-
-
             }
             if ( dia.getValor() > max)
                 max = dia.getValor();
         }
 
         for (FaturamentoDiario dia : faturamentoDiario) {
-            if( dia.getValor()>(faturamentoMensal/faturamentoDiario.size())){
+            if( dia.getValor()>(faturamentoMensal/cont)){
                 dias++;
             }
 
@@ -39,7 +38,7 @@ public  class FaturamentoDiario {
         System.out.printf("O maior valor de faturamento ocorrido em um dia do mês: %.2f %n", max);
 
         System.out.printf("Número de dias no mês em que o valor de faturamento diário foi superior à média mensal: %d %n", dias);
-
+        System.out.println(cont);
 
     }
 
